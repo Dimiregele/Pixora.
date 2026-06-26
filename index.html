@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixora — Site-uri pentru afaceri locale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08080F;--bg2:#0F0F1C;--bg3:#141428;
+  --accent:#5B3FF8;--al:#9580FF;
+  --adim:rgba(91,63,248,.12);--aborder:rgba(91,63,248,.3);
+  --muted:#7A7A9A;--faint:#2A2A42;--text:#E8E8F0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--faint);border-radius:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);transition:transform .3s}
+.logo{font-size:19px;font-weight:800;letter-spacing:-.5px;color:#fff;cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif}
+.logo em{color:var(--al);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links button{font-size:14px;color:var(--muted);font-weight:500;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:color .2s;padding:0}
+.nav-links button:hover{color:#fff}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:9px 22px!important;border-radius:8px!important;font-weight:700!important;font-size:13px!important}
+.page{display:none}.page.active{display:block}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:9px;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(91,63,248,.4)}
+.btn-g{background:transparent;color:var(--muted);border:1px solid var(--faint)}
+.btn-g:hover{border-color:rgba(255,255,255,.2);color:#fff}
+h1,h2,h3{font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1.1}
+h1{font-size:clamp(2.8rem,5.2vw,4.2rem)}
+h2{font-size:clamp(2rem,3.8vw,2.9rem)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--al);margin-bottom:16px;display:block}
+.hr{height:1px;background:rgba(255,255,255,.07)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.v{opacity:1;transform:none}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(91,63,248,.15) 0%,transparent 70%);top:50%;left:40%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--al);margin-bottom:28px}
+.hero-eyebrow span{width:24px;height:1px;background:var(--al)}
+.typed-color{color:var(--al)}
+.cursor{display:inline-block;width:3px;height:.85em;background:var(--al);margin-left:2px;vertical-align:middle;animation:blink .85s step-end infinite}
+.mockup{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.7)}
+.mbar{background:rgba(255,255,255,.04);padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px}
+.mdots{display:flex;gap:5px}.mdot{width:10px;height:10px;border-radius:50%}
+.murl{flex:1;background:rgba(255,255,255,.05);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.mbody{padding:20px}
+.mhero-b{background:var(--adim);border:1px solid var(--aborder);border-radius:10px;padding:24px 20px;margin-bottom:14px;text-align:center}
+.mh{height:10px;border-radius:4px;background:rgba(149,128,255,.5);margin:0 auto 8px}
+.mp{height:6px;border-radius:3px;background:rgba(255,255,255,.1);margin:0 auto 6px}
+.mbtn-d{display:inline-block;background:var(--accent);border-radius:6px;padding:7px 20px;margin-top:8px}.mbtn-i{height:6px;width:48px;background:rgba(255,255,255,.7);border-radius:3px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.mcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px}
+.micon{width:20px;height:20px;border-radius:5px;background:var(--adim);border:1px solid var(--aborder);margin-bottom:8px}
+.mlabel{height:5px;border-radius:3px;background:rgba(255,255,255,.12);width:70%}
+.mtags{display:flex;gap:6px;flex-wrap:wrap}
+.mtag{font-size:10px;background:rgba(91,63,248,.15);border:1px solid rgba(91,63,248,.25);border-radius:20px;padding:3px 10px;color:var(--al);font-weight:600;display:flex;align-items:center;gap:5px}
+.pdot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s ease infinite}
+.ticker{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:13px 0;overflow:hidden}
+.tinner{display:flex;animation:tk 30s linear infinite;width:max-content}
+.titem{display:flex;align-items:center;gap:20px;padding:0 40px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tsep{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
+section{padding:100px 0}
+.svc-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden}
+.svc{background:var(--bg);padding:32px;transition:background .25s;cursor:pointer}
+.svc:hover{background:var(--bg2)}
+.svc-icon{width:40px;height:40px;border-radius:10px;background:var(--adim);border:1px solid var(--aborder);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--al)}
+.svc h3{font-size:16px;margin-bottom:10px}
+.svc p{font-size:14px;color:var(--muted);line-height:1.7}
+.stag{font-size:11px;color:var(--al);background:rgba(91,63,248,.08);border:1px solid rgba(91,63,248,.18);border-radius:20px;padding:3px 9px;font-weight:600}
+.stags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.proc-bg{background:var(--bg2)}
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px}
+.proc-step{padding-right:48px}
+.proc-step+.proc-step{border-left:1px solid var(--faint);padding-left:48px;padding-right:0}
+.proc-step:last-child{padding-right:0}
+.snum{font-size:48px;font-weight:800;color:var(--accent);opacity:.2;line-height:1;margin-bottom:20px}
+.proc-step h3{font-size:19px;margin-bottom:12px}
+.proc-step p{font-size:14px;color:var(--muted);line-height:1.75}
+.proc-note{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--al);font-weight:600;margin-top:16px}
+.proc-note::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--al)}
+
+/* MODELS PAGE */
+.models-header{padding:100px 0 48px;text-align:center;position:relative;overflow:hidden}
+.models-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(91,63,248,.13) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cat-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:48px;flex-wrap:wrap;padding:0 20px}
+.cat-tab{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--faint);color:var(--muted);background:transparent;font-family:'DM Sans',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px}
+.cat-tab:hover{border-color:rgba(255,255,255,.2);color:#fff}
+.cat-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cat-pane{display:none}.cat-pane.active{display:block}
+.model-layout{display:grid;grid-template-columns:1fr 480px;gap:48px;align-items:start}
+
+/* BROWSER */
+.browser{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.bbar{background:rgba(255,255,255,.04);padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px}
+.bdots{display:flex;gap:5px}.bdot{width:10px;height:10px;border-radius:50%}
+.burl{flex:1;background:rgba(255,255,255,.05);border-radius:5px;padding:5px 10px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+
+/* ── DEMO: RESTAURANT ── */
+.dr{font-family:'DM Sans',sans-serif;background:#0c0800}
+.dr-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#110a00;border-bottom:1px solid rgba(232,192,100,.1)}
+.dr-logo{font-size:15px;font-weight:800;color:#e8c064;letter-spacing:-.03em}
+.dr-nav-r{display:flex;gap:16px}
+.dr-nav-r span{font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;font-weight:500}
+.dr-nav-r .dr-res{background:#e8c064;color:#0c0800;font-size:10px;font-weight:700;padding:4px 10px;border-radius:5px;letter-spacing:.03em}
+.dr-hero{position:relative;overflow:hidden;padding:0}
+.dr-hero-img{background:linear-gradient(160deg,#1c0e00,#0c0600);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-bottom:1px solid rgba(232,192,100,.08);position:relative}
+.dr-hero-img::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e8c064' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.dr-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#e8c064;border:1px solid rgba(232,192,100,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.dr-h1{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+.dr-sub{font-size:11px;color:rgba(255,255,255,.38);margin-bottom:14px;line-height:1.5}
+.dr-btns{display:flex;gap:8px}
+.dr-btn-a{background:#e8c064;color:#0c0800;font-size:10px;font-weight:800;padding:7px 14px;border-radius:5px;letter-spacing:.03em}
+.dr-btn-b{border:1px solid rgba(232,192,100,.3);color:#e8c064;font-size:10px;padding:7px 12px;border-radius:5px}
+.dr-infobar{display:flex;border-bottom:1px solid rgba(255,255,255,.06)}
+.dr-infobar-i{flex:1;padding:9px 12px;border-right:1px solid rgba(255,255,255,.06)}
+.dr-infobar-i:last-child{border-right:none}
+.dr-il{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,192,100,.5);margin-bottom:2px}
+.dr-iv{font-size:11px;color:#fff;font-weight:500}
+.dr-menu{padding:14px 18px}
+.dr-menu-cats{display:flex;gap:6px;margin-bottom:12px;overflow:hidden}
+.dr-mc{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px}
+.dr-mc.on{background:#e8c064;color:#0c0800}
+.dr-mc.off{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35)}
+.dr-items{display:flex;flex-direction:column;gap:5px}
+.dr-item{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:7px}
+.dr-item-n{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
+.dr-item-d{font-size:10px;color:rgba(255,255,255,.3)}
+.dr-item-p{font-size:12px;font-weight:800;color:#e8c064;white-space:nowrap;margin-left:10px}
+.dr-foot{padding:10px 18px 14px;display:flex;gap:6px;border-top:1px solid rgba(255,255,255,.06);flex-wrap:wrap}
+.dr-badge{font-size:9px;border-radius:20px;padding:3px 8px;font-weight:600;display:flex;align-items:center;gap:3px}
+.dr-badge-g{background:rgba(232,192,100,.07);border:1px solid rgba(232,192,100,.18);color:#e8c064}
+.dr-badge-gr{background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);color:#4ade80}
+
+/* ── DEMO: SALON ── */
+.ds{background:#060610}
+.ds-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#08081a;border-bottom:1px solid rgba(149,128,255,.12)}
+.ds-logo{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.ds-logo em{color:var(--al);font-style:normal}
+.ds-nav-r{display:flex;gap:14px}
+.ds-nav-r span{font-size:11px;color:rgba(255,255,255,.38);cursor:pointer}
+.ds-nav-r .ds-prog{background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:5px}
+.ds-hero{background:linear-gradient(160deg,#0b0920,#060610);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(149,128,255,.1)}
+.ds-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--al);border:1px solid rgba(149,128,255,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.ds-h1{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+.ds-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.ds-prog-btn{display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:7px 16px;border-radius:5px}
+.ds-stats{display:flex;border-bottom:1px solid rgba(149,128,255,.1)}
+.ds-stat{flex:1;padding:10px;text-align:center;border-right:1px solid rgba(149,128,255,.08)}
+.ds-stat:last-child{border-right:none}
+.ds-sv{font-size:16px;font-weight:800;color:var(--al)}
+.ds-sl{font-size:9px;color:var(--muted);margin-top:2px;letter-spacing:.04em}
+.ds-svcs{padding:14px 18px}
+.ds-st{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ds-card{background:rgba(91,63,248,.07);border:1px solid rgba(91,63,248,.18);border-radius:8px;padding:10px 12px}
+.ds-cn{font-size:11px;font-weight:700;color:#fff;margin-bottom:2px}
+.ds-ci{font-size:10px;color:var(--muted)}
+.ds-cp{font-size:12px;font-weight:800;color:var(--al);margin-top:5px}
+.ds-team{padding:0 18px 14px}
+.ds-tt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.ds-team-row{display:flex;gap:8px}
+.ds-tm{text-align:center;flex:1}
+.ds-tm-av{width:36px;height:36px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:14px;border:2px solid rgba(149,128,255,.3)}
+.ds-tm-n{font-size:10px;font-weight:600;color:#fff}
+.ds-tm-r{font-size:9px;color:var(--muted)}
+
+/* ── DEMO: CONSTRUCTORI ── */
+.dc{background:#050a05}
+.dc-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#060c06;border-bottom:1px solid rgba(74,222,128,.1)}
+.dc-logo{font-size:14px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.dc-logo em{color:#4ade80;font-style:normal}
+.dc-nav-r{display:flex;gap:14px}
+.dc-nav-r span{font-size:11px;color:rgba(255,255,255,.38);cursor:pointer}
+.dc-nav-r .dc-cta{background:#4ade80;color:#050a05;font-size:10px;font-weight:800;padding:4px 10px;border-radius:5px}
+.dc-hero{background:linear-gradient(160deg,#071207,#040804);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(74,222,128,.1)}
+.dc-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4ade80;border:1px solid rgba(74,222,128,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.dc-h1{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+.dc-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.dc-btns{display:flex;gap:8px;justify-content:center}
+.dc-btn-a{background:#4ade80;color:#050a05;font-size:10px;font-weight:800;padding:7px 14px;border-radius:5px}
+.dc-btn-b{border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:10px;padding:7px 12px;border-radius:5px}
+.dc-stats{display:flex;border-bottom:1px solid rgba(74,222,128,.1)}
+.dc-stat{flex:1;padding:10px;text-align:center;border-right:1px solid rgba(74,222,128,.08)}
+.dc-stat:last-child{border-right:none}
+.dc-sv{font-size:16px;font-weight:800;color:#4ade80}
+.dc-sl{font-size:9px;color:var(--muted);margin-top:2px}
+.dc-svcs{padding:14px 18px}
+.dc-st{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dc-list{display:flex;flex-direction:column;gap:5px}
+.dc-svc{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.12);border-radius:7px}
+.dc-sn{font-size:11px;font-weight:600;color:#fff}
+.dc-sp{font-size:11px;font-weight:700;color:#4ade80}
+.dc-port{padding:0 18px 14px}
+.dc-pt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dc-pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.dc-pi{aspect-ratio:1.2;background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:18px}
+
+/* ── DEMO: CABINET MEDICAL ── */
+.dm{background:#060a0d}
+.dm-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#070c10;border-bottom:1px solid rgba(56,189,248,.12)}
+.dm-logo{font-size:14px;font-weight:800;color:#fff}
+.dm-logo em{color:#38bdf8;font-style:normal}
+.dm-nav-r .dm-cta{background:#38bdf8;color:#060a0d;font-size:10px;font-weight:800;padding:4px 10px;border-radius:5px}
+.dm-hero{background:linear-gradient(160deg,#07101a,#060a0d);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(56,189,248,.1)}
+.dm-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#38bdf8;border:1px solid rgba(56,189,248,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.dm-h1{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+.dm-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.dm-btn{display:inline-block;background:#38bdf8;color:#060a0d;font-size:10px;font-weight:800;padding:7px 16px;border-radius:5px}
+.dm-spec{padding:14px 18px}
+.dm-spt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dm-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dm-card{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.18);border-radius:8px;padding:10px 12px}
+.dm-cn{font-size:11px;font-weight:700;color:#fff;margin-bottom:2px}
+.dm-ci{font-size:10px;color:var(--muted)}
+.dm-cp{font-size:11px;font-weight:700;color:#38bdf8;margin-top:5px}
+.dm-doc{padding:0 18px 14px}
+.dm-dt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dm-doc-row{display:flex;gap:8px}
+.dm-d{flex:1;background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.15);border-radius:8px;padding:10px;text-align:center}
+.dm-d-av{font-size:22px;margin-bottom:6px}
+.dm-d-n{font-size:11px;font-weight:700;color:#fff}
+.dm-d-s{font-size:9px;color:#38bdf8;margin-top:2px}
+
+/* ── DEMO: MAGAZIN ── */
+.dmg{background:#0a070e}
+.dmg-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#0d0912;border-bottom:1px solid rgba(251,146,60,.12)}
+.dmg-logo{font-size:14px;font-weight:800;color:#fff}
+.dmg-logo em{color:#fb923c;font-style:normal}
+.dmg-nav-r .dmg-cta{background:#fb923c;color:#0a070e;font-size:10px;font-weight:800;padding:4px 10px;border-radius:5px}
+.dmg-hero{background:linear-gradient(160deg,#180f06,#0a070e);padding:24px 20px;text-align:center;border-bottom:1px solid rgba(251,146,60,.1)}
+.dmg-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fb923c;border:1px solid rgba(251,146,60,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.dmg-h1{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:5px}
+.dmg-sub{font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.dmg-btn{display:inline-block;background:#fb923c;color:#0a070e;font-size:10px;font-weight:800;padding:7px 14px;border-radius:5px}
+.dmg-cats{padding:12px 18px 8px}
+.dmg-ct{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.dmg-cat-list{display:flex;gap:6px;flex-wrap:wrap}
+.dmg-c{font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px}
+.dmg-c.on{background:#fb923c;color:#0a070e}
+.dmg-c.off{background:rgba(255,255,255,.05);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.08)}
+.dmg-prods{padding:8px 18px 14px}
+.dmg-pt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dmg-pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.dmg-prod{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden}
+.dmg-prod-img{height:50px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(251,146,60,.06);border-bottom:1px solid rgba(251,146,60,.1)}
+.dmg-prod-info{padding:7px 8px}
+.dmg-prod-n{font-size:10px;font-weight:600;color:#fff;margin-bottom:2px}
+.dmg-prod-p{font-size:11px;font-weight:800;color:#fb923c}
+
+/* ── DEMO: HOTEL/PENSIUNE ── */
+.dh{background:#08080c}
+.dh-nav{height:46px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#0a0a10;border-bottom:1px solid rgba(250,204,21,.1)}
+.dh-logo{font-size:14px;font-weight:800;color:#fff}
+.dh-logo em{color:#facc15;font-style:normal}
+.dh-nav-r .dh-cta{background:#facc15;color:#08080c;font-size:10px;font-weight:800;padding:4px 10px;border-radius:5px}
+.dh-hero{background:linear-gradient(160deg,#14120a,#08080c);padding:28px 20px;text-align:center;border-bottom:1px solid rgba(250,204,21,.08)}
+.dh-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#facc15;border:1px solid rgba(250,204,21,.3);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+.dh-h1{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.15;margin-bottom:6px}
+.dh-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.dh-btn{display:inline-block;background:#facc15;color:#08080c;font-size:10px;font-weight:800;padding:7px 16px;border-radius:5px}
+.dh-rooms{padding:14px 18px}
+.dh-rt{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dh-rgrid{display:flex;flex-direction:column;gap:6px}
+.dh-room{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(250,204,21,.04);border:1px solid rgba(250,204,21,.12);border-radius:8px}
+.dh-room-img{font-size:22px;width:36px;text-align:center;flex-shrink:0}
+.dh-room-n{font-size:12px;font-weight:700;color:#fff}
+.dh-room-d{font-size:10px;color:var(--muted);margin-top:2px}
+.dh-room-p{margin-left:auto;font-size:12px;font-weight:800;color:#facc15;white-space:nowrap}
+.dh-fac{padding:0 18px 14px}
+.dh-ft{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.dh-fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.dh-f{background:rgba(250,204,21,.05);border:1px solid rgba(250,204,21,.12);border-radius:7px;padding:8px;text-align:center;font-size:16px}
+
+/* PRICING PANEL */
+.pricing-panel{display:flex;flex-direction:column;gap:20px}
+.base-box{background:rgba(91,63,248,.08);border:1px solid var(--accent);border-radius:16px;padding:28px}
+.base-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--al);margin-bottom:12px;display:block}
+.base-price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px}
+.base-cur{font-size:18px;font-weight:500;color:var(--muted)}
+.base-val{font-size:48px;font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1}
+.base-period{font-size:13px;color:var(--muted);margin-left:4px}
+.base-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.base-feats{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.bfeat{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--muted)}
+.bok{width:16px;height:16px;border-radius:50%;background:rgba(91,63,248,.15);border:1px solid var(--aborder);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.bok svg{color:var(--al)}
+.extras-box{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px}
+.extras-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px}
+.extras-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.extras-list{display:flex;flex-direction:column;gap:8px}
+.extra-item{display:flex;align-items:center;gap:12px;padding:11px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;cursor:pointer;transition:border-color .2s,background .2s;user-select:none}
+.extra-item:hover{border-color:rgba(91,63,248,.35);background:rgba(91,63,248,.04)}
+.extra-item.selected{border-color:var(--accent);background:rgba(91,63,248,.1)}
+.extra-cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--faint);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;background:transparent}
+.extra-item.selected .extra-cb{background:var(--accent);border-color:var(--accent)}
+.extra-item.selected .extra-cb svg{opacity:1}
+.extra-cb svg{opacity:0;transition:opacity .15s}
+.extra-info{flex:1}
+.extra-name{font-size:13px;font-weight:600;color:#fff}
+.extra-desc{font-size:11px;color:var(--muted);margin-top:2px}
+.extra-price{font-size:13px;font-weight:700;color:var(--al);white-space:nowrap}
+.total-box{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between}
+.total-label{font-size:13px;color:var(--muted);font-weight:500}
+.total-amount{font-size:28px;font-weight:800;color:#fff;letter-spacing:-.03em}
+.total-amount span{font-size:14px;color:var(--muted);font-weight:400;margin-left:4px}
+
+/* PLATĂ + DOMENIU */
+.pay-dom-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:60px 0}
+.pay-box{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.pay-title{padding:20px 24px;font-size:14px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.06)}
+.pstep{padding:14px 24px;display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.pstep:last-child{border-bottom:none}
+.psn{width:26px;height:26px;border-radius:50%;background:var(--adim);border:1px solid var(--aborder);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--al);flex-shrink:0;margin-top:1px}
+.psc{flex:1}
+.psl{font-size:13px;font-weight:600;color:#fff;margin-bottom:2px}
+.psd{font-size:11px;color:var(--muted);line-height:1.5}
+.psa{font-size:13px;font-weight:700;color:var(--al);white-space:nowrap;padding-left:10px;margin-top:2px}
+.dom-box{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px}
+.dom-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dom-icon{width:36px;height:36px;border-radius:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);display:flex;align-items:center;justify-content:center}
+.dom-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
+.dom-row:last-child{border-bottom:none}
+.dom-label{color:var(--muted)}
+.dom-price{font-weight:700;color:#fff}
+.dom-note{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.65;padding:11px;background:rgba(255,255,255,.03);border-radius:8px}
+.cta-strip{background:var(--bg2);border:1px solid var(--aborder);border-radius:16px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cta-strip h3{font-size:20px;margin-bottom:6px}
+.cta-strip p{font-size:14px;color:var(--muted)}
+
+/* CONTACT PAGE */
+.contact-inner{padding:120px 0 80px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.ci-icon{width:44px;height:44px;border-radius:11px;background:var(--adim);border:1px solid var(--aborder);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-icon svg{color:var(--al)}
+.form-box{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:32px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fl{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.fi,.fs,.fta{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:12px 14px;color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;width:100%;transition:border-color .2s,background .2s;-webkit-appearance:none}
+.fi::placeholder,.fta::placeholder{color:var(--faint)}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--accent);background:rgba(91,63,248,.06)}
+.fi.err{border-color:#ef4444}
+.fs option{background:#0F0F1C;color:#fff}
+.fta{resize:vertical;min-height:100px;line-height:1.6}
+.fsub{width:100%;padding:14px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;background:var(--accent);color:#fff;border:none;border-radius:9px;cursor:pointer;transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.fsub:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(91,63,248,.4)}
+.fsucc{display:none;background:rgba(91,63,248,.08);border:1px solid var(--accent);border-radius:18px;padding:48px 32px;text-align:center}
+.fsucc h3{font-size:22px;margin-bottom:12px}
+
+footer{border-top:1px solid rgba(255,255,255,.07);padding:36px 0}
+.foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.flinks button{font-size:13px;color:var(--muted);transition:color .2s;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+.flinks button:hover{color:#fff}
+.fcopy{font-size:13px;color:var(--faint)}
+.flinks{display:flex;gap:24px}
+
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4)}70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:1000px){
+  .hero-inner,.model-layout,.contact-grid,.svc-head{grid-template-columns:1fr!important}
+  .mockup{display:none}
+  .proc-grid{grid-template-columns:1fr;gap:40px}
+  .proc-step,.proc-step+.proc-step{border:none;padding:0}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .wrap{padding:0 20px}
+  nav{padding:0 20px}
+  section,.contact-inner{padding:70px 0}
+  .pay-dom-grid{grid-template-columns:1fr}
+  .cta-strip{flex-direction:column;text-align:center}
+  .models-header{padding:80px 0 36px}
+}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}.cat-tabs{gap:6px}.ds-grid,.dm-grid,.dmg-pgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<canvas id="c" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+<nav id="nav">
+  <button class="logo" onclick="go('home')">Pix<em>ora</em></button>
+  <div class="nav-links">
+    <button onclick="go('home')">Acasă</button>
+    <button onclick="go('models')">Modele & Prețuri</button>
+    <button onclick="go('contact')" class="nav-cta">Comandă acum</button>
+  </div>
+</nav>
+
+<!-- ═══════════ PAGE 1: HOME ═══════════ -->
+<div class="page active" id="home">
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow" style="opacity:0;animation:fu .6s .1s both"><span></span>Agenție web · România</div>
+          <h1 style="opacity:0;animation:fu .6s .2s both">Afacerea ta merită<br>un site <span class="typed-color" id="typed"></span><span class="cursor"></span></h1>
+          <p style="font-size:17px;color:var(--muted);max-width:460px;line-height:1.8;margin-bottom:40px;opacity:0;animation:fu .6s .35s both">Construim site-uri profesionale pentru orice tip de afacere locală. Design curat, funcțional, livrat în câteva zile.</p>
+          <div style="opacity:0;animation:fu .6s .45s both">
+            <button class="btn btn-p" onclick="go('models')">Vreau un site <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <div class="mockup" style="opacity:0;animation:fu .8s .5s both">
+          <div class="mbar"><div class="mdots"><div class="mdot" style="background:#FF5F57"></div><div class="mdot" style="background:#FFBD2E"></div><div class="mdot" style="background:#28CA41"></div></div><div class="murl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>afacereamea.ro</div></div>
+          <div class="mbody">
+            <div class="mhero-b"><div class="mh" style="width:75%"></div><div class="mh" style="width:55%;background:rgba(149,128,255,.3);margin-top:4px"></div><div class="mp" style="width:65%;margin-top:10px"></div><div class="mp" style="width:50%"></div><div class="mbtn-d"><div class="mbtn-i"></div></div></div>
+            <div class="mgrid"><div class="mcard"><div class="micon"></div><div class="mlabel"></div></div><div class="mcard"><div class="micon"></div><div class="mlabel" style="width:55%"></div></div><div class="mcard"><div class="micon"></div><div class="mlabel" style="width:80%"></div></div></div>
+            <div class="mtags"><div class="mtag"><div class="pdot"></div>Online 24/7</div><div class="mtag">Mobile-ready</div><div class="mtag">SEO activ</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker"><div class="tinner">
+    <div class="titem"><div class="tsep"></div>Design premium</div><div class="titem"><div class="tsep"></div>Livrare 3–5 zile</div><div class="titem"><div class="tsep"></div>Mobile-first</div><div class="titem"><div class="tsep"></div>SEO inclus</div><div class="titem"><div class="tsep"></div>Fără costuri ascunse</div><div class="titem"><div class="tsep"></div>Hosting rapid</div><div class="titem"><div class="tsep"></div>Suport dedicat</div><div class="titem"><div class="tsep"></div>Google Analytics</div><div class="titem"><div class="tsep"></div>Domeniu .ro</div>
+    <div class="titem"><div class="tsep"></div>Design premium</div><div class="titem"><div class="tsep"></div>Livrare 3–5 zile</div><div class="titem"><div class="tsep"></div>Mobile-first</div><div class="titem"><div class="tsep"></div>SEO inclus</div><div class="titem"><div class="tsep"></div>Fără costuri ascunse</div><div class="titem"><div class="tsep"></div>Hosting rapid</div><div class="titem"><div class="tsep"></div>Suport dedicat</div><div class="titem"><div class="tsep"></div>Google Analytics</div><div class="titem"><div class="tsep"></div>Domeniu .ro</div>
+  </div></div>
+
+  <section>
+    <div class="wrap">
+      <div class="svc-head reveal"><div><span class="eyebrow">Ce construim</span><h2>Site-uri pentru<br>orice tip de afacere.</h2></div><p style="font-size:17px;color:var(--muted);line-height:1.8;max-width:440px">Fiecare proiect pornește de la nevoile tale. Poți vedea exemple reale și alegi exact ce vrei.</p></div>
+      <div class="svc-grid reveal">
+        <div class="svc" onclick="go('models','restaurant')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3h18M3 9h18M3 15h18M3 21h18"/></svg></div><h3>Restaurante & Cafenele</h3><p>Meniu digital, galerie foto, program și localizare. Totul pe un singur site.</p><div class="stags"><span class="stag">Meniu</span><span class="stag">Galerie</span><span class="stag">Maps</span></div></div>
+        <div class="svc" onclick="go('models','salon')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>Saloane & Clinici</h3><p>Prezentare servicii, echipă, prețuri și galerie. Clienții știu la ce să se aștepte.</p><div class="stags"><span class="stag">Servicii</span><span class="stag">Echipă</span><span class="stag">Galerie</span></div></div>
+        <div class="svc" onclick="go('models','constructori')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><h3>Meșteri & Constructori</h3><p>Portofoliu de lucrări, servicii cu prețuri orientative și date de contact directe.</p><div class="stags"><span class="stag">Portofoliu</span><span class="stag">Servicii</span><span class="stag">Contact</span></div></div>
+        <div class="svc" onclick="go('models','cabinet')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Cabinete Medicale</h3><p>Prezentare medici, specialități, tarife și cum ajungi la cabinet. Profesional și clar.</p><div class="stags"><span class="stag">Medici</span><span class="stag">Specialități</span><span class="stag">Tarife</span></div></div>
+        <div class="svc" onclick="go('models','magazin')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><h3>Magazine locale</h3><p>Catalog de produse cu prețuri, descrieri și fotografii. Clienții comandă prin WhatsApp sau vizitează fizic.</p><div class="stags"><span class="stag">Catalog</span><span class="stag">Produse</span><span class="stag">Contact</span></div></div>
+        <div class="svc" onclick="go('models','hotel')"><div class="svc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Hoteluri & Pensiuni</h3><p>Tipuri de camere, facilități, tarife și galerie foto. Turiștii găsesc tot ce le trebuie.</p><div class="stags"><span class="stag">Camere</span><span class="stag">Facilități</span><span class="stag">Tarife</span></div></div>
+      </div>
+      <div style="text-align:center;margin-top:48px" class="reveal"><button class="btn btn-p" onclick="go('models')" style="font-size:15px;padding:14px 32px">Vezi exemple & prețuri <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="hr"></div></div>
+
+  <section class="proc-bg">
+    <div class="wrap">
+      <div class="reveal"><span class="eyebrow">Cum lucrăm</span><h2>De la prima discuție<br>la site-ul live.</h2></div>
+      <div class="proc-grid">
+        <div class="proc-step reveal rd1"><div class="snum">01</div><h3>Alegi modelul</h3><p>Intri pe pagina de modele, vezi un exemplu real pentru tipul tău de afacere și selectezi ce funcționalități vrei în plus față de pachetul de bază.</p><span class="proc-note">Preț clar din primul moment</span></div>
+        <div class="proc-step reveal rd2"><div class="snum">02</div><h3>Construim împreună</h3><p>Trimiți comanda, plătești avansul de 30% și în 3–5 zile ai prima versiune. Facem modificările cerute până ești 100% mulțumit.</p><span class="proc-note">3–5 zile lucrătoare</span></div>
+        <div class="proc-step reveal rd3"><div class="snum">03</div><h3>Lansare & suport</h3><p>Site-ul merge live pe domeniul tău .ro. Plătești restul de 70%, ai 30 de zile suport inclus și poți adăuga mentenanță lunară dacă dorești.</p><span class="proc-note">30 zile suport inclus</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="wrap"><div class="foot">
+    <button class="logo" onclick="go('home')">Pix<em>ora</em></button>
+    <span class="fcopy">© 2025 Pixora · România</span>
+    <div class="flinks"><button onclick="go('home')">Acasă</button><button onclick="go('models')">Modele</button><button onclick="go('contact')">Contact</button></div>
+  </div></div></footer>
+</div>
+
+<!-- ═══════════ PAGE 2: MODELS ═══════════ -->
+<div class="page" id="models">
+  <div class="models-header">
+    <div class="models-glow"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <span class="eyebrow" style="display:block;text-align:center">Modele & Prețuri</span>
+      <h1 style="font-size:clamp(2.4rem,4.5vw,3.4rem)">Alege modelul<br>potrivit afacerii tale.</h1>
+      <p style="font-size:16px;color:var(--muted);max-width:520px;margin:18px auto 0;line-height:1.8">Pachet de bază + opțiuni extra selectabile. Prețul se calculează automat în funcție de ce alegi.</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="cat-tabs" id="cat-tabs">
+      <button class="cat-tab active" onclick="showCat('restaurant',this)">🍽 Restaurant</button>
+      <button class="cat-tab" onclick="showCat('salon',this)">✂️ Salon / Clinică</button>
+      <button class="cat-tab" onclick="showCat('constructori',this)">🔨 Constructori</button>
+      <button class="cat-tab" onclick="showCat('cabinet',this)">🏥 Cabinet Medical</button>
+      <button class="cat-tab" onclick="showCat('magazin',this)">🛍 Magazin</button>
+      <button class="cat-tab" onclick="showCat('hotel',this)">🏨 Hotel / Pensiune</button>
+    </div>
+  </div>
+
+  <section style="padding-top:0;position:relative;z-index:1"><div class="wrap">
+
+    <!-- ── RESTAURANT ── -->
+    <div class="cat-pane active" id="cat-restaurant">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>restaurantlamama.ro</div></div>
+            <div class="dr">
+              <div class="dr-nav"><div class="dr-logo">La Mama</div><div class="dr-nav-r"><span>Meniu</span><span>Galerie</span><span>Contact</span><div class="dr-res">Rezervă masă</div></div></div>
+              <div class="dr-hero-img">
+                <div class="dr-tag">Restaurant tradițional · Est. 1998</div>
+                <div class="dr-h1">Gust autentic,<br>atmosferă caldă.</div>
+                <div class="dr-sub">Bucătărie românească tradițională · Ingrediente locale<br>Terasă cu 40 locuri · Meniuri corporate disponibile</div>
+                <div class="dr-btns"><div class="dr-btn-a">Sună acum →</div><div class="dr-btn-b">Vezi meniul</div></div>
+              </div>
+              <div class="dr-infobar">
+                <div class="dr-infobar-i"><div class="dr-il">Program</div><div class="dr-iv">Lu–Du 12–23</div></div>
+                <div class="dr-infobar-i"><div class="dr-il">Telefon</div><div class="dr-iv">0721 234 567</div></div>
+                <div class="dr-infobar-i"><div class="dr-il">Capacitate</div><div class="dr-iv">80 locuri + terasă</div></div>
+              </div>
+              <div class="dr-menu">
+                <div class="dr-menu-cats"><div class="dr-mc on">Supe & Ciorbe</div><div class="dr-mc off">Fel principal</div><div class="dr-mc off">Grătar</div><div class="dr-mc off">Deserturi</div></div>
+                <div class="dr-items">
+                  <div class="dr-item"><div><div class="dr-item-n">Ciorbă de burtă</div><div class="dr-item-d">Smântână, mujdei, ardei iute</div></div><div class="dr-item-p">28 lei</div></div>
+                  <div class="dr-item"><div><div class="dr-item-n">Ciorbă rădăuțeană</div><div class="dr-item-d">Piept de pui, smântână, oțet</div></div><div class="dr-item-p">26 lei</div></div>
+                  <div class="dr-item"><div><div class="dr-item-n">Borș de pește</div><div class="dr-item-d">Crap, știucă, leuștean proaspăt</div></div><div class="dr-item-p">32 lei</div></div>
+                </div>
+              </div>
+              <div class="dr-foot"><div class="dr-badge dr-badge-gr"><div style="width:4px;height:4px;border-radius:50%;background:#4ade80"></div>Deschis acum</div><div class="dr-badge dr-badge-g">Google Maps</div><div class="dr-badge dr-badge-g">Meniu digital</div><div class="dr-badge dr-badge-g">Galerie foto</div></div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu datele și brandingul afacerii tale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Restaurant</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="r-total">300</span><span class="base-period">total</span></div>
+            <p class="base-desc">Include tot ce are nevoie un restaurant pentru o prezență online completă și credibilă.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Meniu, Galerie, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Meniu digital cu categorii și prețuri</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Program, adresă, telefon vizibile clar</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Google Maps integrat</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Optimizat mobil & SEO</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Livrare în 3–5 zile</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Restaurant / Cafenea', document.getElementById('r-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi. Prețul se actualizează automat.</div>
+            <div class="extras-list" id="r-extras">
+              <div class="extra-item" onclick="toggleExtra(this,'r-total',300)" data-price="80"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Galerie foto avansată</div><div class="extra-desc">Lightbox, categorii, până la 50 de fotografii</div></div><div class="extra-price">+80€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'r-total',300)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină Evenimente & Noutăți</div><div class="extra-desc">Promoții, evenimente speciale, petreceri private</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'r-total',300)" data-price="50"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Integrare Google Reviews</div><div class="extra-desc">Recenziile tale de pe Google, afișate pe site</div></div><div class="extra-price">+50€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'r-total',300)" data-price="70"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Meniu PDF descărcabil</div><div class="extra-desc">Versiune printabilă a meniului, generată automat</div></div><div class="extra-price">+70€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'r-total',300)" data-price="100"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Versiune în engleză / maghiară</div><div class="extra-desc">Site bilingv, util pentru turism sau zone mixte</div></div><div class="extra-price">+100€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="r-total-display">300</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SALON ── -->
+    <div class="cat-pane" id="cat-salon">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>salonelena.ro</div></div>
+            <div class="ds">
+              <div class="ds-nav"><div class="ds-logo">Salon <em>Elena</em></div><div class="ds-nav-r"><span>Servicii</span><span>Echipă</span><span>Galerie</span><div class="ds-prog">Contactează-ne</div></div></div>
+              <div class="ds-hero">
+                <div class="ds-tag">Salon de frumusețe · Est. 2015</div>
+                <div class="ds-h1">Frumusețea ta,<br>redefinită.</div>
+                <div class="ds-sub">Echipă cu 9+ ani experiență · 2400+ clienți fideli<br>Sună sau trimite mesaj pentru programare</div>
+                <div class="ds-prog-btn">Sună acum →</div>
+              </div>
+              <div class="ds-stats"><div class="ds-stat"><div class="ds-sv">9+</div><div class="ds-sl">Ani exp.</div></div><div class="ds-stat"><div class="ds-sv">2400+</div><div class="ds-sl">Clienți</div></div><div class="ds-stat"><div class="ds-sv">4.9★</div><div class="ds-sl">Google</div></div><div class="ds-stat"><div class="ds-sv">6</div><div class="ds-sl">Specialiști</div></div></div>
+              <div class="ds-svcs">
+                <div class="ds-st">Servicii & Prețuri</div>
+                <div class="ds-grid">
+                  <div class="ds-card"><div class="ds-cn">Tuns & Coafat</div><div class="ds-ci">45–60 min</div><div class="ds-cp">80 lei</div></div>
+                  <div class="ds-card"><div class="ds-cn">Vopsit complet</div><div class="ds-ci">90–120 min</div><div class="ds-cp">180 lei</div></div>
+                  <div class="ds-card"><div class="ds-cn">Manichiură gel</div><div class="ds-ci">45 min</div><div class="ds-cp">70 lei</div></div>
+                  <div class="ds-card"><div class="ds-cn">Keratină</div><div class="ds-ci">120 min</div><div class="ds-cp">250 lei</div></div>
+                </div>
+              </div>
+              <div class="ds-team">
+                <div class="ds-tt">Echipa noastră</div>
+                <div class="ds-team-row">
+                  <div class="ds-tm"><div class="ds-tm-av" style="background:rgba(149,128,255,.1)">👩</div><div class="ds-tm-n">Elena M.</div><div class="ds-tm-r">Stilist senior</div></div>
+                  <div class="ds-tm"><div class="ds-tm-av" style="background:rgba(149,128,255,.1)">👱</div><div class="ds-tm-n">Andrei P.</div><div class="ds-tm-r">Colorist</div></div>
+                  <div class="ds-tm"><div class="ds-tm-av" style="background:rgba(149,128,255,.1)">👩‍🦱</div><div class="ds-tm-n">Ioana R.</div><div class="ds-tm-r">Manichiuristă</div></div>
+                  <div class="ds-tm"><div class="ds-tm-av" style="background:rgba(149,128,255,.1)">👨</div><div class="ds-tm-n">Mihai S.</div><div class="ds-tm-r">Coafor</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu datele și brandingul afacerii tale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Salon / Clinică</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="s-total">320</span><span class="base-period">total</span></div>
+            <p class="base-desc">Prezentare completă a salonului cu servicii, prețuri, echipă și contact direct.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Servicii & Prețuri, Echipă, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Lista completă servicii cu durate și prețuri</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Secțiune echipă cu foto și specialitate</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Telefon, adresă, Google Maps</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Optimizat mobil & SEO</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Salon / Clinică', document.getElementById('s-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi.</div>
+            <div class="extras-list">
+              <div class="extra-item" onclick="toggleExtra(this,'s-total',320)" data-price="80"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Galerie înainte / după</div><div class="extra-desc">Comparații vizuale cu slider, până la 30 perechi</div></div><div class="extra-price">+80€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'s-total',320)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină promoții & oferte</div><div class="extra-desc">Afișează ofertele lunare și pachetele speciale</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'s-total',320)" data-price="50"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Integrare Google Reviews</div><div class="extra-desc">Recenziile reale de pe Google, afișate automat</div></div><div class="extra-price">+50€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'s-total',320)" data-price="70"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Buton WhatsApp direct</div><div class="extra-desc">Clienții îți scriu direct pe WhatsApp cu un click</div></div><div class="extra-price">+70€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="s-total-display">320</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONSTRUCTORI ── -->
+    <div class="cat-pane" id="cat-constructori">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>constructiiionescu.ro</div></div>
+            <div class="dc">
+              <div class="dc-nav"><div class="dc-logo">Ionescu <em>Construct</em></div><div class="dc-nav-r"><span>Servicii</span><span>Portofoliu</span><div class="dc-cta">Contactează-ne</div></div></div>
+              <div class="dc-hero">
+                <div class="dc-tag">Construcții & Renovări · Licențiat ANRE</div>
+                <div class="dc-h1">Calitate garantată,<br>termen respectat.</div>
+                <div class="dc-sub">15+ ani experiență · 340+ lucrări finalizate<br>Lucrăm în toată țara cu echipe specializate</div>
+                <div class="dc-btns"><div class="dc-btn-a">Sună acum →</div><div class="dc-btn-b">Vezi portofoliu</div></div>
+              </div>
+              <div class="dc-stats"><div class="dc-stat"><div class="dc-sv">15+</div><div class="dc-sl">Ani exp.</div></div><div class="dc-stat"><div class="dc-sv">340+</div><div class="dc-sl">Lucrări</div></div><div class="dc-stat"><div class="dc-sv">4.8★</div><div class="dc-sl">Google</div></div><div class="dc-stat"><div class="dc-sv">12</div><div class="dc-sl">Specialiști</div></div></div>
+              <div class="dc-svcs">
+                <div class="dc-st">Servicii principale</div>
+                <div class="dc-list">
+                  <div class="dc-svc"><div class="dc-sn">Construcții la roșu & structuri</div><div class="dc-sp">Ofertă personalizată</div></div>
+                  <div class="dc-svc"><div class="dc-sn">Renovări complete interioare</div><div class="dc-sp">De la 80€/mp</div></div>
+                  <div class="dc-svc"><div class="dc-sn">Instalații sanitare & termice</div><div class="dc-sp">Ofertă personalizată</div></div>
+                </div>
+              </div>
+              <div class="dc-port">
+                <div class="dc-pt">Lucrări recente</div>
+                <div class="dc-pgrid"><div class="dc-pi">🏠</div><div class="dc-pi">🔨</div><div class="dc-pi">🪟</div><div class="dc-pi">🛁</div></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu fotografiile și datele tale reale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Constructori</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="c-total">280</span><span class="base-period">total</span></div>
+            <p class="base-desc">Site de portofoliu profesional cu servicii, date de contact clare și credibilitate maximă.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Servicii, Portofoliu, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Lista servicii cu prețuri orientative</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Galerie portofoliu (până la 20 fotografii)</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Statistici: ani experiență, lucrări, rating</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Telefon, email, Google Maps</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Meșteri / Constructori', document.getElementById('c-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi.</div>
+            <div class="extras-list">
+              <div class="extra-item" onclick="toggleExtra(this,'c-total',280)" data-price="90"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Galerie extinsă + categorii</div><div class="extra-desc">Până la 60 de fotografii organizate pe tipuri de lucrări</div></div><div class="extra-price">+90€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'c-total',280)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Secțiune recenzii clienți</div><div class="extra-desc">Testimoniale cu text și rating, adăugate manual</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'c-total',280)" data-price="50"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină Despre noi & Certificări</div><div class="extra-desc">Prezentare echipă, licențe și autorizații</div></div><div class="extra-price">+50€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'c-total',280)" data-price="70"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Integrare Google Reviews</div><div class="extra-desc">Recenziile tale de pe Google, afișate live</div></div><div class="extra-price">+70€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="c-total-display">280</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CABINET MEDICAL ── -->
+    <div class="cat-pane" id="cat-cabinet">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>clinicapopescu.ro</div></div>
+            <div class="dm">
+              <div class="dm-nav"><div class="dm-logo">Clinica <em>Popescu</em></div><div class="dm-nav-r"><div class="dm-cta">Programare telefonică</div></div></div>
+              <div class="dm-hero">
+                <div class="dm-tag">Cabinet medical · Medicină generală</div>
+                <div class="dm-h1">Sănătatea ta,<br>pe primul loc.</div>
+                <div class="dm-sub">Echipă medicală cu 20+ ani experiență<br>Sună pentru programare · Rezultate în aceeași zi</div>
+                <div class="dm-btn">Sună acum →</div>
+              </div>
+              <div class="dm-spec">
+                <div class="dm-spt">Specialități & Tarife</div>
+                <div class="dm-grid">
+                  <div class="dm-card"><div class="dm-cn">Medicină generală</div><div class="dm-ci">Consultație completă</div><div class="dm-cp">100 lei</div></div>
+                  <div class="dm-card"><div class="dm-cn">Cardiologie</div><div class="dm-ci">Consultație + EKG</div><div class="dm-cp">180 lei</div></div>
+                  <div class="dm-card"><div class="dm-cn">Dermatologie</div><div class="dm-ci">Consultație + diagnostic</div><div class="dm-cp">150 lei</div></div>
+                  <div class="dm-card"><div class="dm-cn">Ecografie</div><div class="dm-ci">Abdominală / pelviană</div><div class="dm-cp">120 lei</div></div>
+                </div>
+              </div>
+              <div class="dm-doc">
+                <div class="dm-dt">Medicii noștri</div>
+                <div class="dm-doc-row">
+                  <div class="dm-d"><div class="dm-d-av">👨‍⚕️</div><div class="dm-d-n">Dr. Popescu A.</div><div class="dm-d-s">Medicină generală</div></div>
+                  <div class="dm-d"><div class="dm-d-av">👩‍⚕️</div><div class="dm-d-n">Dr. Ionescu M.</div><div class="dm-d-s">Cardiologie</div></div>
+                  <div class="dm-d"><div class="dm-d-av">👨‍⚕️</div><div class="dm-d-n">Dr. Stanescu R.</div><div class="dm-d-s">Dermatologie</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu datele și brandingul afacerii tale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Cabinet Medical</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="m-total">350</span><span class="base-period">total</span></div>
+            <p class="base-desc">Prezentare profesională a cabinetului cu specialități, tarife, medici și contact direct.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Specialități & Tarife, Medici, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Lista specialități cu tarife clare</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Prezentare medici cu fotografie și specialitate</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Program, adresă, telefon & Maps</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Optimizat mobil & SEO local</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Cabinet Medical', document.getElementById('m-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi.</div>
+            <div class="extras-list">
+              <div class="extra-item" onclick="toggleExtra(this,'m-total',350)" data-price="70"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină FAQ pacienți</div><div class="extra-desc">Întrebări frecvente despre consultații, analize, proceduri</div></div><div class="extra-price">+70€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'m-total',350)" data-price="80"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Secțiune asigurări acceptate</div><div class="extra-desc">Lista caselor de asigurări cu care lucrați</div></div><div class="extra-price">+80€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'m-total',350)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Integrare Google Reviews</div><div class="extra-desc">Recenziile pacienților de pe Google, afișate automat</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'m-total',350)" data-price="100"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Versiune în engleză</div><div class="extra-desc">Site bilingv pentru pacienți străini sau expați</div></div><div class="extra-price">+100€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="m-total-display">350</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAGAZIN ── -->
+    <div class="cat-pane" id="cat-magazin">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>magazinulpopescu.ro</div></div>
+            <div class="dmg">
+              <div class="dmg-nav"><div class="dmg-logo">Magazin <em>Artizanal</em></div><div class="dmg-nav-r"><div class="dmg-cta">Contactează-ne</div></div></div>
+              <div class="dmg-hero">
+                <div class="dmg-tag">Produse artizanale · Handmade</div>
+                <div class="dmg-h1">Produse cu suflet,<br>făcute cu mâna.</div>
+                <div class="dmg-sub">Ceramică, textile și dulcețuri tradiționale<br>Livrare în toată țara · Comenzi prin WhatsApp</div>
+                <div class="dmg-btn">Sună / WhatsApp →</div>
+              </div>
+              <div class="dmg-cats">
+                <div class="dmg-ct">Categorii produse</div>
+                <div class="dmg-cat-list"><div class="dmg-c on">Ceramică</div><div class="dmg-c off">Textile</div><div class="dmg-c off">Dulcețuri</div><div class="dmg-c off">Lemnărie</div><div class="dmg-c off">Bijuterii</div></div>
+              </div>
+              <div class="dmg-prods">
+                <div class="dmg-pt">Produse populare</div>
+                <div class="dmg-pgrid">
+                  <div class="dmg-prod"><div class="dmg-prod-img">🏺</div><div class="dmg-prod-info"><div class="dmg-prod-n">Vas ceramic pictat</div><div class="dmg-prod-p">85 lei</div></div></div>
+                  <div class="dmg-prod"><div class="dmg-prod-img">🫙</div><div class="dmg-prod-info"><div class="dmg-prod-n">Dulceață de trandafiri</div><div class="dmg-prod-p">32 lei</div></div></div>
+                  <div class="dmg-prod"><div class="dmg-prod-img">🧶</div><div class="dmg-prod-info"><div class="dmg-prod-n">Covor tradițional</div><div class="dmg-prod-p">320 lei</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu produsele și brandingul afacerii tale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Magazin</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="mg-total">300</span><span class="base-period">total</span></div>
+            <p class="base-desc">Catalog de produse cu fotografii, prețuri și contact direct pentru comenzi.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Catalog produse, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Catalog cu până la 30 de produse cu poze & prețuri</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Categorii de produse filtrabile</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Telefon, WhatsApp, adresă & Maps</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Optimizat mobil & SEO</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Magazin local', document.getElementById('mg-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi.</div>
+            <div class="extras-list">
+              <div class="extra-item" onclick="toggleExtra(this,'mg-total',300)" data-price="100"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Catalog extins (până la 80 produse)</div><div class="extra-desc">Spațiu pentru mai multe produse cu filtre avansate</div></div><div class="extra-price">+100€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'mg-total',300)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Buton WhatsApp per produs</div><div class="extra-desc">La fiecare produs, un buton direct de comandă pe WhatsApp</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'mg-total',300)" data-price="80"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină Despre noi & Povestea brandului</div><div class="extra-desc">Secțiune narativă cu istoria și valorile afacerii tale</div></div><div class="extra-price">+80€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="mg-total-display">300</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HOTEL ── -->
+    <div class="cat-pane" id="cat-hotel">
+      <div class="model-layout">
+        <div>
+          <p style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Exemplu — cum ar arăta site-ul tău</p>
+          <div class="browser">
+            <div class="bbar"><div class="bdots"><div class="bdot" style="background:#FF5F57"></div><div class="bdot" style="background:#FFBD2E"></div><div class="bdot" style="background:#28CA41"></div></div><div class="burl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>pensiuneamuntilor.ro</div></div>
+            <div class="dh">
+              <div class="dh-nav"><div class="dh-logo">Pensiunea <em>Munților</em></div><div class="dh-nav-r"><div class="dh-cta">Sună pentru rezervare</div></div></div>
+              <div class="dh-hero">
+                <div class="dh-tag">Pensiune 3★ · Munții Apuseni</div>
+                <div class="dh-h1">O vacanță de neuitat<br>la munte.</div>
+                <div class="dh-sub">12 camere · Mic dejun inclus · Parcare gratuită<br>Sună sau trimite email pentru disponibilitate</div>
+                <div class="dh-btn">Verifică disponibilitatea →</div>
+              </div>
+              <div class="dh-rooms">
+                <div class="dh-rt">Tipuri de camere & Tarife</div>
+                <div class="dh-rgrid">
+                  <div class="dh-room"><div class="dh-room-img">🛏</div><div><div class="dh-room-n">Cameră dublă standard</div><div class="dh-room-d">Baie privată · Vedere la grădină</div></div><div class="dh-room-p">200 lei/noapte</div></div>
+                  <div class="dh-room"><div class="dh-room-img">🏡</div><div><div class="dh-room-n">Apartament superior</div><div class="dh-room-d">Living + dormitor · Vedere la munte</div></div><div class="dh-room-p">350 lei/noapte</div></div>
+                </div>
+              </div>
+              <div class="dh-fac">
+                <div class="dh-ft">Facilități incluse</div>
+                <div class="dh-fgrid"><div class="dh-f">🍳</div><div class="dh-f">🅿️</div><div class="dh-f">📶</div><div class="dh-f">🌿</div></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Site-ul tău va arăta similar, cu camerele și facilitățile tale reale.</p>
+        </div>
+        <div class="pricing-panel">
+          <div class="base-box">
+            <span class="base-label">Pachet de bază — Hotel / Pensiune</span>
+            <div class="base-price"><span class="base-cur">€</span><span class="base-val" id="h-total">380</span><span class="base-period">total</span></div>
+            <p class="base-desc">Prezentare completă a unității de cazare cu camere, tarife, facilități și contact direct.</p>
+            <div class="base-feats">
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Pagini: Acasă, Camere & Tarife, Facilități, Galerie, Contact</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Prezentare camere cu fotografii și tarife</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Lista facilități (parcare, WiFi, mic dejun etc.)</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Galerie foto unitate</div>
+              <div class="bfeat"><div class="bok"><svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div>Telefon, email, Google Maps</div>
+            </div>
+            <button class="btn btn-p" style="width:100%;justify-content:center;padding:13px" onclick="orderModel('Hotel / Pensiune', document.getElementById('h-total').textContent)">Comandă acum →</button>
+          </div>
+          <div class="extras-box">
+            <div class="extras-title">Funcționalități extra</div>
+            <div class="extras-sub">Selectează ce vrei să adaugi.</div>
+            <div class="extras-list">
+              <div class="extra-item" onclick="toggleExtra(this,'h-total',380)" data-price="90"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Galerie foto extinsă</div><div class="extra-desc">Până la 80 de fotografii organizate pe categorii</div></div><div class="extra-price">+90€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'h-total',380)" data-price="70"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Pagină activități & atracții turistice</div><div class="extra-desc">Ce pot vizita turiștii în zonă, cu hartă</div></div><div class="extra-price">+70€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'h-total',380)" data-price="60"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Integrare Google Reviews</div><div class="extra-desc">Recenziile de pe Google, afișate live pe site</div></div><div class="extra-price">+60€</div></div>
+              <div class="extra-item" onclick="toggleExtra(this,'h-total',380)" data-price="100"><div class="extra-cb"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><polyline points="2 6 5 9 10 3"/></svg></div><div class="extra-info"><div class="extra-name">Versiune în engleză</div><div class="extra-desc">Site bilingv pentru turiști străini</div></div><div class="extra-price">+100€</div></div>
+            </div>
+          </div>
+          <div class="total-box"><div class="total-label">Total estimat</div><div class="total-amount">€<span id="h-total-display">380</span><span>+ TVA</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLATĂ + DOMENIU -->
+    <div class="pay-dom-grid reveal">
+      <div class="pay-box">
+        <div class="pay-title">Cum funcționează plata</div>
+        <div class="pstep"><div class="psn">1</div><div class="psc"><div class="psl">Avans la comandă — 30%</div><div class="psd">Plătești 30% când confirmi comanda. Demarăm imediat.</div></div><div class="psa">30%</div></div>
+        <div class="pstep"><div class="psn">2</div><div class="psc"><div class="psl">Rest la livrare — 70%</div><div class="psd">Plătești restul de 70% doar după ce ești mulțumit de rezultat.</div></div><div class="psa">70%</div></div>
+        <div class="pstep"><div class="psn">3</div><div class="psc"><div class="psl">Mentenanță lunară (opțional)</div><div class="psd">Hosting, actualizări și backup — 80€/lună dacă dorești.</div></div><div class="psa">opțional</div></div>
+      </div>
+      <div class="dom-box">
+        <div class="dom-hdr"><div class="dom-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><div style="font-size:15px;font-weight:700;color:#fff">Domeniu .ro</div><div style="font-size:12px;color:var(--muted)">Ce înseamnă și cât costă</div></div></div>
+        <div class="dom-row"><span class="dom-label">Cumpărare domeniu (ex: firma.ro)</span><span class="dom-price" style="color:#fbbf24">~150 lei / an</span></div>
+        <div class="dom-row"><span class="dom-label">Hosting (inclus în mentenanță)</span><span class="dom-price">inclus</span></div>
+        <div class="dom-row"><span class="dom-label">Configurare și conectare</span><span class="dom-price">inclus</span></div>
+        <div class="dom-note">Domeniul este adresa ta pe internet (ex: <strong>firma-ta.ro</strong>). Se plătește o dată pe an direct la registrul .ro — noi ne ocupăm de tot procesul.</div>
+      </div>
+    </div>
+
+    <div class="cta-strip reveal">
+      <div><h3>Nu știi ce model ți se potrivește?</h3><p>Scrie-ne și îți recomandăm ce funcționează cel mai bine pentru afacerea ta.</p></div>
+      <button class="btn btn-p" onclick="go('contact')" style="font-size:15px;padding:13px 28px;white-space:nowrap">Contactează-ne →</button>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><div class="foot">
+    <button class="logo" onclick="go('home')">Pix<em>ora</em></button>
+    <span class="fcopy">© 2025 Pixora · România</span>
+    <div class="flinks"><button onclick="go('home')">Acasă</button><button onclick="go('models')">Modele</button><button onclick="go('contact')">Contact</button></div>
+  </div></div></footer>
+</div>
+
+<!-- ═══════════ PAGE 3: CONTACT ═══════════ -->
+<div class="page" id="contact">
+  <div class="contact-inner">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">Contactează-ne</span>
+          <h1 style="font-size:clamp(2.2rem,4vw,3.2rem);margin-bottom:20px">Hai să construim<br>site-ul tău.</h1>
+          <p style="font-size:17px;color:var(--muted);line-height:1.8;max-width:380px;margin-bottom:48px">Completează formularul și îți răspundem în maxim 24 de ore cu o ofertă personalizată. Fără obligații.</p>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:center;gap:16px">
+              <div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9580FF" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><div style="font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">Email</div><a href="mailto:dimitrieanic@gmail.com" style="font-size:15px;color:#fff;transition:color .2s" onmouseover="this.style.color='#9580FF'" onmouseout="this.style.color='#fff'">dimitrieanic@gmail.com</a></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px">
+              <div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9580FF" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><div style="font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">Zonă de activitate</div><span style="font-size:15px;color:#fff">Toată România</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="form-box" id="fbox">
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="fg"><label class="fl">Numele / Firma</label><input class="fi" id="fn" placeholder="Ex: Restaurant La Mama" type="text"></div>
+                <div class="fg"><label class="fl">Email</label><input class="fi" id="fe" placeholder="email@firma.ro" type="email"></div>
+              </div>
+              <div class="fg">
+                <label class="fl">Model dorit</label>
+                <select class="fs" id="fm">
+                  <option value="Restaurant / Cafenea">Restaurant / Cafenea</option>
+                  <option value="Salon / Clinică">Salon / Clinică</option>
+                  <option value="Meșteri / Constructori">Meșteri / Constructori</option>
+                  <option value="Cabinet Medical">Cabinet Medical</option>
+                  <option value="Magazin local">Magazin local</option>
+                  <option value="Hotel / Pensiune">Hotel / Pensiune</option>
+                  <option value="Altceva / Nu știu încă">Altceva / Nu știu încă</option>
+                </select>
+              </div>
+              <div class="fg"><label class="fl">Mesaj</label><textarea class="fta" id="fmsg" placeholder="Spune-ne câte ceva despre afacerea ta — ce tip de site vrei, ai deja un site vechi, ce funcționalități vrei în plus..."></textarea></div>
+              <button class="fsub" id="fsub" onclick="sendMail()">
+                Trimite comanda
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p style="font-size:12px;color:var(--faint);text-align:center;line-height:1.5">Trimiți un email direct la dimitrieanic@gmail.com. Răspundem în maxim 24 de ore.</p>
+            </div>
+          </div>
+          <div class="fsucc" id="fsucc">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(91,63,248,.15);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 24px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9580FF" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Email deschis!</h3>
+            <p style="color:var(--muted);font-size:15px;margin-top:10px;line-height:1.7">S-a deschis clientul tău de email cu mesajul completat. Apasă <strong>Trimite</strong> pentru a finaliza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="wrap"><div class="foot">
+    <button class="logo" onclick="go('home')">Pix<em>ora</em></button>
+    <span class="fcopy">© 2025 Pixora · România</span>
+    <div class="flinks"><button onclick="go('home')">Acasă</button><button onclick="go('models')">Modele</button><button onclick="go('contact')">Contact</button></div>
+  </div></div></footer>
+</div>
+
+<script>
+/* ── ROUTER ── */
+function go(page, cat) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  window.scrollTo(0,0);
+  setTimeout(initReveal, 60);
+  if (cat) {
+    const tab = document.querySelector(`[onclick*="showCat('${cat}"]`);
+    if (tab) showCat(cat, tab);
+    const sel = document.getElementById('fm');
+    if (sel) for (let o of sel.options) if (o.value.toLowerCase().includes(cat.toLowerCase())) { o.selected = true; break; }
+  }
+}
+
+/* ── CATEGORY TABS ── */
+function showCat(id, btn) {
+  document.querySelectorAll('.cat-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cat-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── EXTRAS TOGGLE ── */
+function toggleExtra(el, totalId, base) {
+  el.classList.toggle('selected');
+  const extras = el.closest('.extras-list').querySelectorAll('.extra-item.selected');
+  let sum = base;
+  extras.forEach(e => sum += parseInt(e.dataset.price));
+  document.getElementById(totalId).textContent = sum;
+  document.getElementById(totalId + '-display').textContent = sum;
+}
+
+/* ── ORDER ── */
+function orderModel(model, price) {
+  go('contact');
+  setTimeout(() => {
+    const sel = document.getElementById('fm');
+    for (let o of sel.options) if (o.value.includes(model.split(' ')[0])) { o.selected = true; break; }
+    document.getElementById('fmsg').value = `Doresc să comand modelul: ${model} (${price}€ estimat).`;
+  }, 100);
+}
+
+/* ── TYPED ── */
+const words = ['care vinde.','care impresionează.','profesional.','care funcționează.'];
+let wi = 0, ci = 0, del = false;
+function runTyped() {
+  const el = document.getElementById('typed');
+  if (!el) return;
+  (function tick() {
+    const w = words[wi];
+    if (!del) { el.textContent = w.slice(0,++ci); if(ci===w.length){del=true;setTimeout(tick,2000);return;} }
+    else { el.textContent = w.slice(0,--ci); if(ci===0){del=false;wi=(wi+1)%words.length;} }
+    setTimeout(tick, del?50:90);
+  })();
+}
+document.addEventListener('DOMContentLoaded', runTyped);
+
+/* ── REVEAL ── */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target);} });
+  }, {threshold:.1});
+  document.querySelectorAll('.reveal:not(.v)').forEach(r => obs.observe(r));
+}
+document.addEventListener('DOMContentLoaded', initReveal);
+
+/* ── NAV ── */
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  document.getElementById('nav').style.transform = y > lastY && y > 80 ? 'translateY(-100%)' : 'translateY(0)';
+  lastY = y;
+});
+
+/* ── CANVAS ── */
+const cv = document.getElementById('c'), cx = cv.getContext('2d');
+let W,H,pts;
+function initC(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;pts=Array.from({length:60},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.1+.3}));}
+initC();window.addEventListener('resize',initC);
+function drawC(){
+  cx.clearRect(0,0,W,H);
+  for(const p of pts){p.x=(p.x+p.vx+W)%W;p.y=(p.y+p.vy+H)%H;}
+  for(let i=0;i<pts.length;i++){
+    for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){cx.beginPath();cx.strokeStyle=`rgba(91,63,248,${(1-d/130)*.11})`;cx.lineWidth=.5;cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.stroke();}}
+    cx.beginPath();cx.arc(pts[i].x,pts[i].y,pts[i].r,0,Math.PI*2);cx.fillStyle='rgba(149,128,255,.3)';cx.fill();
+  }
+  requestAnimationFrame(drawC);
+}
+drawC();
+
+/* ── EMAIL via mailto — funcționează garantat ── */
+function sendMail() {
+  const fn = document.getElementById('fn');
+  const fe = document.getElementById('fe');
+  let ok = true;
+  [fn,fe].forEach(el => { el.classList.remove('err'); if(!el.value.trim()){el.classList.add('err');ok=false;} });
+  if(!ok) return;
+
+  const model = document.getElementById('fm').value;
+  const msg = document.getElementById('fmsg').value;
+
+  const subject = encodeURIComponent(`Comandă Pixora — ${model}`);
+  const body = encodeURIComponent(
+    `Bună ziua,\n\nDoresc să fac o comandă pe Pixora.\n\nNume / Firmă: ${fn.value.trim()}\nEmail: ${fe.value.trim()}\nModel dorit: ${model}\n\nMesaj:\n${msg || '—'}\n\nAștept oferta voastră.\nMulțumesc!`
+  );
+
+  window.location.href = `mailto:dimitrieanic@gmail.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('fbox').style.display = 'none';
+  document.getElementById('fsucc').style.display = 'block';
+}
+</script>
+</body>
+</html>
